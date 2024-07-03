@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+        .tabs{
+            width: 400px;
+            margin: 30px auto;
+            background-color: #fff;
+            border: 1px solid #C0dcc0;
+            box-sizing: border-box;/* 使盒子内边距和边框不改变盒子大小 */
+        }
+        .tabs nav{
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            overflow: hidden; /* 隐藏超出部分 */
+            background-color: #c0dcc0;
+            display: flex;
+        }
+        nav a{
+            display: block;
+            width: 100px;
+            border-right: 1px solid #fff;
+            color: #000;
+            text-decoration: none;
+        }
+        nav a:last-child{
+            border-right: 0 none; /* 去除最后一个a标签的边框 */
+        }
+        nav a.active{
+            background-color: #9baf0b;
+        }
+        .cont{
+            overflow: hidden;
+            display: none;
+        }
+        .cont ol {
+            line-height: 30px;
+        }
+    </style>
+</head>
+    <body>
+        <div class="tabs">
+            <!-- 导航标签 -->
+            <nav>
+                <a href="javascript:;" data-cont="local">国内新闻</a>
+                <a href="javascript:;" data-cont="global">国际新闻</a>
+                <a href="javascript:;" data-cont="sports">体育新闻</a>
+                <a href="javascript:;" data-cont="funny">娱乐新闻</a>
+            </nav>
+            <section class="cont" id="local">
+                <ol>
+                    <li>国内新闻1</li>
+                    <li>国内新闻1</li>
+                    <li>国内新闻1</li>
+                    <li>国内新闻1</li>
+                    <li>国内新闻1</li>
+                    <li>国内新闻1</li>
+                    <li>国内新闻1</li>
+                </ol>
+            </section>
+            <section class="cont" id="global">
+                <ol>
+                    <li>国际新闻1</li>
+                    <li>国际新闻1</li>
+                    <li>国际新闻1</li>
+                    <li>国际新闻1</li>
+                    <li>国际新闻1</li>
+                    <li>国际新闻1</li>
+                    <li>国际新闻1</li>
+                </ol>
+            </section>
+            <section class="cont" id="sports">
+            <ol>
+                <li>体育新闻1</li>
+                <li>体育新闻2</li>
+                <li>体育新闻3</li>
+                <li>体育新闻4</li>
+                <li>体育新闻5</li>
+                <li>体育新闻6</li>
+                <li>体育新闻7</li>
+            </ol>
+        </section>
+        <section class="cont" id="funny">
+            <ol>
+                <li>娱乐新闻1</li>
+                <li>娱乐新闻2</li>
+                <li>娱乐新闻3</li>
+                <li>娱乐新闻4</li>
+                <li>娱乐新闻5</li>
+                <li>娱乐新闻6</li>
+                <li>娱乐新闻7</li>
+            </ol>
+        </section>
+        </div>
+        <script>
+            // (function(){})(0) 表示这个函数在页面加载完成时会自动执行 0表示给这个函数传输一个值
+            (function(key){
+                // 获得所有导航a标签
+                var navs = document.querySelectorAll('nav a');
+                for (let i = 0; i < navs.length; i++) {
+                    // 第一次加载时会这么显示
+                    if (key == i) {
+                        // 为指定的导航a标签添加一个名为active的类名
+                        navs[i].classList.add("active");
+                        // 获取当前导航a标签的data-cont属性值
+                        // data-cont属性的值是每个导航a标签的id属性值
+                        var secId = navs[i].dataset["cont"];
+                        // 找到data-cont属性值对应的section标签
+                        // 并将该section标签的display属性值由原来的none设置为block
+                        document.querySelector("#" + secId).style.display = "block"
+                    }
+                    // 给当前下标为i的a标签设置函数
+                    navs[i].onclick = function () {
+                        // 获取所有的类名为active的元素 目的是为将第一次加载完成执行的样式去掉
+                        var currentNav = document.querySelector(".active");
+                        // 获取所有a标签中属性data-cont的值
+                        var currentId = currentNav.dataset["cont"];
+                        // 除去a标签中的active类
+                        currentNav.classList.remove("active");
+                        // 给所有的a标签中属性data-cont的值等于currentId的a标签添添加display隐藏起来
+                        document.querySelector("#" + currentId).style.display = "none"
+                        // 给点击的a标签添加active类
+                        this.classList.add("active");
+                        // 获取当前点击的a标签的data-cont属性值
+                        var myId = this.dataset["cont"];
+                        // 将当前点击的a标签的data-cont属性值等于当前点击的a标签的id属性值
+                        document.querySelector("#" + myId).style.display = "block"
+                    }
+                }
+            })(0)
+        </script>
+    </body>
+</html>
