@@ -1,0 +1,17 @@
+1.运维方面
+创建子域名
+2.硬件方面
+更换windows版本
+3.仓库管理
+git笔记
+4.前端方面
+js笔记
+vue笔记
+组件笔记
+5.ASP.Net方面
+C#语法
+Autofac笔记
+EFCore笔记
+JWT笔记
+Swagger笔记
+6.Bug方面
